@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -7,14 +7,40 @@ import Sell from './pages/Sell';
 import Chat from './pages/Chat';
 import Inbox from './pages/Inbox';
 import ProductDetail from './pages/ProductDetail';
+import API from './api';
 import './App.css';
 
 function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
   const token = localStorage.getItem('token');
+  const [msgCount, setMsgCount] = React.useState(0);
+
+  React.useEffect(() => {
+    if (!token) {
+      setMsgCount(0);
+      return;
+    }
+
+    const fetchMsgCount = async () => {
+      try {
+        const res = await API.get('/conversations');
+        setMsgCount(res.data.length);
+      } catch (err) {
+        console.error('Error fetching message count', err);
+      }
+    };
+
+    fetchMsgCount();
+
+    // Check every 10 seconds for new messages
+    const interval = setInterval(fetchMsgCount, 10000);
+    return () => clearInterval(interval);
+  }, [token, location.pathname]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    setMsgCount(0);
     navigate('/login');
   };
 
@@ -29,7 +55,7 @@ function Navbar() {
           {token ? (
             <>
               <Link to="/sell" className="nav-link">Sell Product</Link>
-              <Link to="/inbox" className="nav-link">📬 Messages</Link>
+              <Link to="/inbox" className="nav-link">📬 Messages{msgCount > 0 ? ` (${msgCount})` : ''}</Link>
               <button onClick={handleLogout} className="btn nav-btn">Logout</button>
             </>
           ) : (
