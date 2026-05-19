@@ -118,7 +118,7 @@ app.post('/product', auth, upload.array('images', 5), async (req, res) => {
     
     let imageUrls = [];
     if (req.files && req.files.length > 0) {
-      imageUrls = req.files.map(file => `http://localhost:5000/uploads/${file.filename}`);
+      imageUrls = req.files.map(file => `${req.protocol}://${req.get('host')}/uploads/${file.filename}`);
     } else {
       imageUrls = ['https://placehold.co/600x400?text=Student+Marketplace+Item'];
     }
