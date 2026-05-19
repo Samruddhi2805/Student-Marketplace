@@ -4,7 +4,23 @@ import API from '../api';
 
 const CATEGORIES = ['Books', 'Electronics', 'Hostel Essentials', 'Cycles', 'Notes', 'Lab Equipment', 'Calculators & Drafting', 'Sports & Fitness', 'Musical Instruments'];
 const PAYMENT_METHODS = ['Cash on Delivery', 'UPI on Meetup', 'Meetup Payment'];
-const MEETUP_LOCATIONS = ['Library', 'Hostel Gate', 'Cafeteria', 'Block A', 'Block B', 'Main Gate', 'Sports Ground', 'Canteen', 'Other'];
+const MEETUP_LOCATIONS = [
+  'Main Gate',
+  'Central Library',
+  'College Canteen',
+  'Food Court',
+  'Student Center',
+  'Department Entrance',
+  'Parking Area',
+  'Bus Stop',
+  'Sports Ground',
+  'Auditorium Entrance',
+  'Academic Block Lobby',
+  'Garden Sitting Area',
+  'Computer Lab Entrance',
+  'Gymkhana',
+  'Other'
+];
 
 function Sell() {
   const [title, setTitle] = useState('');
