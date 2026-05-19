@@ -56,7 +56,7 @@ mongoose.connect(process.env.MONGO_URI)
 // POST /register
 app.post('/register', async (req, res) => {
   try {
-    const { name, email, password, phone } = req.body;
+    const { name, email, password } = req.body;
     
     let user = await User.findOne({ email });
     if (user) {
@@ -66,7 +66,7 @@ app.post('/register', async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    user = new User({ name, email, password: hashedPassword, phone: phone || '' });
+    user = new User({ name, email, password: hashedPassword });
     await user.save();
 
     res.status(201).json({ message: 'User registered successfully' });
@@ -92,8 +92,7 @@ app.post('/login', async (req, res) => {
 
     const payload = {
       email: user.email,
-      name: user.name,
-      phone: user.phone || ''
+      name: user.name
     };
 
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1d' });
@@ -131,7 +130,6 @@ app.post('/product', auth, upload.array('images', 5), async (req, res) => {
       category,
       images: imageUrls,
       seller: req.user.email,
-      sellerPhone: req.user.phone || '',
       paymentMethod: paymentMethod || 'Cash on Delivery',
       meetupLocation: meetupLocation || ''
     });

@@ -11,7 +11,6 @@ const ProductSchema = new mongoose.Schema({
   },
   images: { type: [String], default: [] }, // Multi-image support
   seller: { type: String, required: true },
-  sellerPhone: { type: String, default: '' },
   paymentMethod: {
     type: String,
     enum: ['Cash on Delivery', 'UPI on Meetup', 'Meetup Payment'],

@@ -326,26 +326,6 @@ function ProductDetail() {
                     >
                       💬 Message Seller Internally
                     </button>
-
-                    {product.sellerPhone && (
-                      <a
-                        href={`https://wa.me/${product.sellerPhone}?text=Hi! I'm interested in your item: ${encodeURIComponent(product.title)} on Student Marketplace. Can we arrange a meetup?`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="btn btn-block"
-                        style={{
-                          background: '#25D366',
-                          color: 'white',
-                          textAlign: 'center',
-                          display: 'block',
-                          padding: '14px',
-                          fontSize: '1rem',
-                          fontWeight: '700'
-                        }}
-                      >
-                        📱 Contact on WhatsApp
-                      </a>
-                    )}
                   </>
                 )}
 

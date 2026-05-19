@@ -30,7 +30,6 @@ const UserSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  phone: { type: String, default: '' },
   createdAt: { type: Date, default: Date.now }
 });
 ```
@@ -49,7 +48,6 @@ const ProductSchema = new mongoose.Schema({
   },
   images: { type: [String], default: [] }, // Multi-photo array
   seller: { type: String, required: true },
-  sellerPhone: { type: String, default: '' },
   paymentMethod: {
     type: String,
     enum: ['Cash on Delivery', 'UPI on Meetup', 'Meetup Payment'],
@@ -88,7 +86,6 @@ const MessageSchema = new mongoose.Schema({
 
 ### 💬 B. Complete Communication Channels
 * **In-App Messaging Center**: Full-duplex messaging interface with automated last-message indexings in a private `/inbox` folder.
-* **WhatsApp Deep Links**: Auto-populates conversational text specifying product interest, instantly linking buyers and sellers.
 
 ### 🖼️ C. Tactical Multi-Photo Carousel Gallery
 * Allows sellers to upload up to 5 concurrent images per product.
@@ -103,7 +100,7 @@ const MessageSchema = new mongoose.Schema({
 ## 5. API Reference Guide
 
 ### 🔑 Authentication Routes
-* `POST /register`: Registers a user. Body: `{ name, email, password, phone }`
+* `POST /register`: Registers a user. Body: `{ name, email, password }`
 * `POST /login`: Log in a user. Returns a signed JWT payload.
 
 ### 📦 Product CRUD Routes

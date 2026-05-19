@@ -8,7 +8,7 @@
 
 * **🤝 Verified Student Badges:** Screens out free accounts and highlights institutional college-issued domains to guarantee traders are active campus students.
 * **🚫 No Online Gateway Risk:** Eliminates transaction friction and payment gateway fees. Optimized for local face-to-face meetups on campus.
-* **💬 In-App Messaging Center:** Full-duplex messaging interface with automated last-message indexings. Includes WhatsApp deep links for instant connection.
+* **💬 In-App Messaging Center:** Full-duplex messaging interface with automated last-message indexings.
 * **🖼️ Tactical Multi-Photo Gallery:** Sellers can upload up to 5 concurrent images per product.
 * **🛡️ Integrity Controls:** Sellers retain complete administrative rights to mark items as Sold or Delete listings directly from the platform.
 

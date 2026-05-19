@@ -85,7 +85,7 @@ However, this process faces critical issues:
 - Peer-to-Peer Academic Ecosystem: To create a localized marketplace tailored specifically for college campuses.
 - Fraud-Resistant Transactions: To implement an offline Meetup & Cash-on-Delivery model that avoids redundant payment gateways.
 - Student Verification: To provide institutional verification (Verified Student badges) for incoming users.
-- Seamless Communication: To facilitate communication between buyers and sellers via an in-app messaging center and WhatsApp deep links.
+- Seamless Communication: To facilitate communication between buyers and sellers via an in-app messaging center.
  
 ### 2.3 PROJECT SUMMARY 
 Student Marketplace is a localized peer-to-peer marketplace built on the MERN stack (MongoDB, Express.js, React, Node.js). It provides a secure, verified environment for college students to trade academic and lifestyle items. The platform utilizes a premium cyber-neon aesthetic and focuses on a realistic offline Meetup transaction model to eliminate online payment risks. With features like dynamic multi-photo uploads via Multer, JWT-based authentication, and dedicated communication channels, Student Marketplace modernizes the traditional campus bulletin board into a streamlined digital ecosystem.
@@ -124,7 +124,7 @@ Student Marketplace is a localized peer-to-peer marketplace designed specificall
 Key Features:
 - Verified Student Badges based on institutional email parsing.
 - Manual and dynamic Meetup Location Input.
-- Complete Communication Channels (In-App Messaging & WhatsApp deep links).
+- Complete Communication Channels (In-App Messaging).
 - Tactical Multi-Photo Carousel Gallery (up to 5 images per product).
 - Self-Contained Integrity Controls for sellers to mark items as Sold or Delete.
  
@@ -143,7 +143,7 @@ Generic ecommerce platforms are highly vulnerable to fraud, lack localized stude
 ### 5.2 GOALS AND OBJECTIVES 
 1. To Mitigate Fraud: By utilizing an offline Meetup & Cash-on-Delivery model where transaction fulfillment and inspection happen simultaneously.
 2. To Ensure Trust: By implementing a Verified Student badge system via email domain parsing.
-3. To Streamline Communication: By offering integrated messaging and WhatsApp deep links.
+3. To Streamline Communication: By offering integrated messaging.
  
 ### 5.3 STATEMENT OF SCOPE 
 The project delivers a fully functional MERN stack web application (Student Marketplace). 
@@ -208,7 +208,7 @@ A verified student wants to sell an old reference book. They log in, upload the 
 | :--- | :--- | :--- |
 | UC1 | Register & Authenticate | Student |
 | UC2 | Upload Product Listing | Student (Seller) |
-| UC3 | Send Message / WhatsApp Link | Student (Buyer) |
+| UC3 | Send Message | Student (Buyer) |
 | UC4 | Mark Listing as Sold/Delete | Student (Seller) |
  
 ### 6.7 USE CASE DIAGRAM 
@@ -219,7 +219,7 @@ A verified student wants to sell an old reference book. They log in, upload the 
 
 | Data Entity | Storage Component | Data Fields | Description & Purpose |
 | :--- | :--- | :--- | :--- |
-| User | UserSchema | name, email, password, phone, createdAt | Stores authenticated user profiles. |
+| User | UserSchema | name, email, password, createdAt | Stores authenticated user profiles. |
 | Product | ProductSchema | title, price, description, category, images, seller, paymentMethod, meetupLocation, status | Supports physical transactions, multi-images, status indicators. |
 | Message | MessageSchema | sender, receiver, productId, message, timestamp | Persists private communication channels between peers. |
  
@@ -275,7 +275,7 @@ Key Components:
 | 7 | Send Chat Message | Valid string message | Message saved to DB | Message saved | Pass |
 | 8 | Fetch Conversations | GET request to inbox | List of active chats returned | List returned | Pass |
 | 9 | Directory Auto-Generate | Server startup (no /uploads) | /uploads directory created | Directory created | Pass |
-| 10 | WhatsApp Deep Link | Click on contact button | WhatsApp URL with pre-filled text | URL generated | Pass |
+
 
 ---
  
@@ -346,7 +346,7 @@ The Student Marketplace project successfully addressed the need for a localized,
 - Replaced risky online payment gateways with a practical, offline Meetup & COD model.
 - Implemented a Verified Student badge system via email parsing.
 - Built a seamless multi-photo upload system using Multer.
-- Integrated robust in-app messaging and WhatsApp deep links for easy communication.
+- Integrated robust in-app messaging for easy communication.
 
 ### 2. Improvements Possible 
 - Implementation of an image compression algorithm before saving to disk to save server storage.

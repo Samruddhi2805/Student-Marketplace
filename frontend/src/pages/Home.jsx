@@ -261,18 +261,6 @@ function Home() {
                         >
                           💬 Message Seller
                         </button>
-
-                        {p.sellerPhone && (
-                          <a
-                            href={`https://wa.me/${p.sellerPhone}?text=Hi! I'm interested in your item: ${encodeURIComponent(p.title)} on Student Marketplace. Can we arrange a meetup?`}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="btn btn-block"
-                            style={{ background: '#25D366', color: 'white', textAlign: 'center', display: 'block', marginBottom: '8px' }}
-                          >
-                            📱 WhatsApp Seller
-                          </a>
-                        )}
                       </>
                     )}
 

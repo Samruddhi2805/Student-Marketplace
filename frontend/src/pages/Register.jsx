@@ -5,7 +5,6 @@ import API from '../api';
 function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -17,7 +16,7 @@ function Register() {
     setError('');
 
     try {
-      await API.post('/register', { name, email, password, phone });
+      await API.post('/register', { name, email, password });
       alert('Registration successful! Please login.');
       navigate('/login');
     } catch (err) {
@@ -59,19 +58,6 @@ function Register() {
               required 
               placeholder="student@university.edu"
             />
-          </div>
-          <div className="form-group">
-            <label>WhatsApp Phone Number (optional)</label>
-            <input 
-              type="tel" 
-              className="form-control"
-              value={phone} 
-              onChange={(e) => setPhone(e.target.value)} 
-              placeholder="91XXXXXXXXXX (with country code)"
-            />
-            <small style={{ color: 'var(--light-text)', fontSize: '0.8rem' }}>
-              Buyers can contact you directly on WhatsApp
-            </small>
           </div>
           <div className="form-group">
             <label>Password</label>
