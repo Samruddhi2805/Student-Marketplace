@@ -5,6 +5,7 @@ const MessageSchema = new mongoose.Schema({
   receiver: { type: String, required: true }, // Email
   productId: { type: String, default: '' },
   message: { type: String, required: true },
+  read: { type: Boolean, default: false },
   timestamp: { type: Date, default: Date.now }
 });
 

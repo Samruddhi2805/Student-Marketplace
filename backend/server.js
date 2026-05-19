@@ -237,11 +237,27 @@ app.post('/message', auth, async (req, res) => {
   }
 });
 
+// GET /unread-count (Protected) - Get count of unread messages for logged-in user
+app.get('/unread-count', auth, async (req, res) => {
+  try {
+    const count = await Message.countDocuments({ receiver: req.user.email, read: false });
+    res.json({ count });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 // GET /messages/:otherEmail (Protected) - Get chat history with a specific user
 app.get('/messages/:otherEmail', auth, async (req, res) => {
   try {
     const { otherEmail } = req.params;
     const myEmail = req.user.email;
+
+    // Mark messages from otherEmail to me as read
+    await Message.updateMany(
+      { sender: otherEmail, receiver: myEmail, read: false },
+      { $set: { read: true } }
+    );
 
     const messages = await Message.find({
       $or: [

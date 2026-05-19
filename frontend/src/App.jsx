@@ -24,8 +24,8 @@ function Navbar() {
 
     const fetchMsgCount = async () => {
       try {
-        const res = await API.get('/conversations');
-        setMsgCount(res.data.length);
+        const res = await API.get('/unread-count');
+        setMsgCount(res.data.count);
       } catch (err) {
         console.error('Error fetching message count', err);
       }
