@@ -66,7 +66,4 @@ The platform is built on the secure and highly scalable **MERN** stack:
    ```
 4. Open your browser to `http://localhost:5173`.
 
----
 
-## 📖 Documentation
-For a complete and detailed breakdown of the system architecture, data flow, ER diagrams, and software requirements, please refer to the [DOCUMENTATION.md](./DOCUMENTATION.md) included in this repository.
