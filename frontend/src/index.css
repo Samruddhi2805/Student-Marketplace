@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* Neon Color Palette */
+  --cyan:        #00f5ff;
+  --cyan-dim:    rgba(0, 245, 255, 0.15);
+  --cyan-glow:   rgba(0, 245, 255, 0.08);
+  --teal:        #00d4aa;
+  --purple:      #7c3aed;
+  --purple-dim:  rgba(124, 58, 237, 0.2);
+  --electric:    #818cf8;
+  --neon-pink:   #f472b6;
+
+  /* Surface Colors */
+  --bg-base:     #020814;
+  --bg-surface:  rgba(8, 20, 45, 0.75);
+  --bg-card:     rgba(10, 22, 50, 0.65);
+  --bg-card-hover: rgba(14, 30, 65, 0.82);
+  --bg-input:    rgba(6, 14, 34, 0.8);
+  --bg-nav:      rgba(2, 8, 20, 0.82);
+
+  /* Borders */
+  --border-cyan: rgba(0, 245, 255, 0.2);
+  --border-purple: rgba(124, 58, 237, 0.25);
+  --border-glass: rgba(255, 255, 255, 0.06);
+
+  /* Text */
+  --text-primary:   #e2e8f0;
+  --text-secondary: #64748b;
+  --text-muted:     #334155;
+
+  /* Glow Shadows */
+  --shadow-cyan:   0 0 20px rgba(0, 245, 255, 0.12), 0 4px 32px rgba(0, 245, 255, 0.06);
+  --shadow-purple: 0 0 20px rgba(124, 58, 237, 0.15), 0 4px 32px rgba(124, 58, 237, 0.08);
+  --shadow-card:   0 8px 40px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255,255,255,0.04) inset;
+  --shadow-card-hover: 0 16px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 245, 255, 0.08);
+
+  /* Radii */
+  --radius-sm: 10px;
+  --radius:    16px;
+  --radius-lg: 24px;
+
+  /* Blur */
+  --blur: blur(20px);
+
+  /* Keep existing vars mapped for compatibility */
+  --primary-color:   #00f5ff;
+  --primary-light:   #818cf8;
+  --primary-dark:    #00d4aa;
+  --secondary-color: #f59e0b;
+  --white:           #e2e8f0;
+  --border-color:    rgba(0, 245, 255, 0.15);
+  --glass-bg:        var(--bg-card);
+  --glass-bg-strong: rgba(10, 22, 50, 0.85);
+  --glass-border:    var(--border-cyan);
+  --glass-shadow:    var(--shadow-card);
+  --glass-shadow-hover: var(--shadow-card-hover);
+  --text-color:      #e2e8f0;
+  --light-text:      #64748b;
+}
+
+/* ================================ */
+/* RESET & BASE                     */
+/* ================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-base);
+  background-image:
+    /* Vignette */
+    radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%),
+    /* Cyan top-center bloom */
+    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(0, 245, 255, 0.07) 0%, transparent 70%),
+    /* Purple top-left */
+    radial-gradient(ellipse 60% 50% at 0% 0%, rgba(124, 58, 237, 0.1) 0%, transparent 70%),
+    /* Teal bottom-right */
+    radial-gradient(ellipse 60% 50% at 100% 100%, rgba(0, 212, 170, 0.08) 0%, transparent 70%),
+    /* Purple bottom-left */
+    radial-gradient(ellipse 50% 40% at 0% 100%, rgba(124, 58, 237, 0.07) 0%, transparent 70%),
+    /* Deep base gradient */
+    linear-gradient(160deg, #020814 0%, #030d1e 40%, #020a18 70%, #030814 100%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Subtle grid pattern overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 245, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 245, 255, 0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Floating ambient orbs */
+body::after {
+  content: '';
+  position: fixed;
+  top: 15%;
+  left: 10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 245, 255, 0.04) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+  animation: floatOrb 18s ease-in-out infinite alternate;
+}
+
+@keyframes floatOrb {
+  0%   { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  50%  { transform: translate(80px, -60px) scale(1.1); opacity: 1; }
+  100% { transform: translate(-40px, 40px) scale(0.95); opacity: 0.7; }
+}
+
+/* Second orb via pseudo on #root */
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+#root::before {
+  content: '';
+  position: fixed;
+  bottom: 10%;
+  right: 8%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+  animation: floatOrb2 22s ease-in-out infinite alternate;
+}
+
+@keyframes floatOrb2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-60px, -80px) scale(1.08); }
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* ================================ */
+/* UTILITIES                        */
+/* ================================ */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.text-center { text-align: center; }
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+
+/* ================================ */
+/* BUTTONS                          */
+/* ================================ */
+.btn {
+  display: inline-block;
+  padding: 11px 22px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s ease;
+  letter-spacing: 0.3px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, rgba(0,245,255,0.15) 0%, rgba(124,58,237,0.2) 100%);
+  color: var(--cyan);
+  border: 1px solid var(--border-cyan);
+  box-shadow: 0 0 16px rgba(0, 245, 255, 0.15), inset 0 1px 0 rgba(255,255,255,0.06);
+  backdrop-filter: blur(12px);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, rgba(0,245,255,0.25) 0%, rgba(124,58,237,0.3) 100%);
+  box-shadow: 0 0 28px rgba(0, 245, 255, 0.3), 0 0 60px rgba(0, 245, 255, 0.12);
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+.btn-primary:disabled {
+  opacity: 0.4;
+  transform: none;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(251, 191, 36, 0.2));
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.1);
+}
+
+.btn-secondary:hover {
+  box-shadow: 0 0 28px rgba(245, 158, 11, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: rgba(0, 245, 255, 0.05);
+  border: 1px solid var(--border-cyan);
+  color: var(--cyan);
+  backdrop-filter: blur(8px);
+}
+
+.btn-outline:hover {
+  background: rgba(0, 245, 255, 0.12);
+  box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+/* ================================ */
+/* FORMS                            */
+/* ================================ */
+.form-group { margin-bottom: 1.4rem; }
+
+.form-group label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid rgba(0, 245, 255, 0.12);
+  border-radius: var(--radius-sm);
+  font-size: 0.93rem;
+  background: var(--bg-input);
+  backdrop-filter: blur(12px);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: rgba(0, 245, 255, 0.5);
+  box-shadow: 0 0 0 3px rgba(0, 245, 255, 0.08), 0 0 20px rgba(0, 245, 255, 0.1);
+  background: rgba(6, 14, 40, 0.95);
+}
+
+.form-control::placeholder { color: var(--text-muted); }
+select.form-control { cursor: pointer; appearance: auto; }
+textarea.form-control { resize: vertical; min-height: 80px; }
+
+/* Style select options for dark theme */
+select.form-control option { background: #0a1630; color: #e2e8f0; }
+
+/* ================================ */
+/* STATUS MESSAGES                  */
+/* ================================ */
+.loading {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.error-msg {
+  color: #f87171;
+  background: rgba(239, 68, 68, 0.1);
+  backdrop-filter: var(--blur);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  padding: 11px 16px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.success-msg {
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.1);
+  backdrop-filter: var(--blur);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  padding: 11px 16px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
