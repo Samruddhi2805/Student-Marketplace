@@ -101,7 +101,10 @@ function Home() {
               className="search-input"
               placeholder="Search for books, cycles, lab equipment..."
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setCategoryFilter('All'); // Auto-reset category to "All" when typing a search
+              }}
             />
             <button className="search-btn">Search</button>
           </div>
@@ -115,7 +118,10 @@ function Home() {
             {CATEGORIES.map(cat => (
               <button
                 key={cat}
-                onClick={() => setCategoryFilter(cat)}
+                onClick={() => {
+                  setCategoryFilter(cat);
+                  setSearchTerm(''); // Clear search input when switching/browsing categories
+                }}
                 style={{
                   padding: '6px 16px',
                   borderRadius: '20px',
