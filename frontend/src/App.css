@@ -473,3 +473,36 @@
   .product-grid { grid-template-columns: 1fr; }
   .nav-logo a { font-size: 1.2rem; }
 }
+
+/* ================================ */
+/* CUSTOM FILE INPUT DESIGN         */
+/* ================================ */
+input[type="file"] {
+  background: rgba(6, 14, 38, 0.65) !important;
+  border: 1px solid rgba(0, 245, 255, 0.12) !important;
+  border-radius: 8px !important;
+  color: var(--text-secondary) !important;
+  padding: 8px 12px !important;
+  cursor: pointer !important;
+  width: 100% !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+input[type="file"]::file-selector-button {
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.15), rgba(124, 58, 237, 0.2)) !important;
+  border: 1px solid rgba(0, 245, 255, 0.35) !important;
+  border-radius: 6px !important;
+  color: var(--cyan) !important;
+  padding: 6px 14px !important;
+  font-weight: 600 !important;
+  font-size: 0.8rem !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+  margin-right: 12px !important;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.25), rgba(124, 58, 237, 0.32)) !important;
+  border-color: rgba(0, 245, 255, 0.6) !important;
+  box-shadow: 0 0 12px rgba(0, 245, 255, 0.35) !important;
+}
