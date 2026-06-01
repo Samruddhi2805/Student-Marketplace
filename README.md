@@ -64,6 +64,6 @@ The platform is built on the secure and highly scalable **MERN** stack:
    ```bash
    npm run dev
    ```
-4. Open your browser to `http://localhost:5173`.
+4. Live app link: 'https://student-marketplace-git-master-nevsesamruddhi-6140s-projects.vercel.app/'.
 
 
