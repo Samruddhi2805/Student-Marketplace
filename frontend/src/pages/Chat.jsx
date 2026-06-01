@@ -11,6 +11,14 @@ function Chat() {
   const navigate = useNavigate();
   const bottomRef = useRef(null);
 
+  const suggestions = [
+    "Available? I want to purchase this.",
+    "Ready to buy today—can we finalize?",
+    "Where on campus can we meet to trade?",
+    "I will pay the listed price in cash or UPI upon meetup.",
+    "Meetup confirmed—ready to inspect the item now."
+  ];
+
   // Get logged in user email from token
   const token = localStorage.getItem('token');
   if (!token) { navigate('/login'); }
@@ -91,6 +99,54 @@ function Chat() {
           </div>
         ))}
         <div ref={bottomRef} />
+      </div>
+
+      {/* Quick Suggestions */}
+      <div className="chat-suggestions" style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '8px',
+        marginBottom: '12px',
+        justifyContent: 'flex-start'
+      }}>
+        {suggestions.map((sug, idx) => (
+          <button
+            key={idx}
+            type="button"
+            onClick={() => setNewMessage(sug)}
+            className="suggestion-chip"
+            style={{
+              background: 'rgba(0, 245, 255, 0.04)',
+              border: '1px solid rgba(0, 245, 255, 0.15)',
+              color: 'var(--cyan)',
+              borderRadius: '50px',
+              padding: '5px 12px',
+              fontSize: '0.76rem',
+              fontWeight: '500',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              backdropFilter: 'blur(8px)',
+              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.02)',
+              display: 'inline-flex',
+              width: 'max-content',
+              whiteSpace: 'nowrap'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(0, 245, 255, 0.12)';
+              e.currentTarget.style.borderColor = 'rgba(0, 245, 255, 0.4)';
+              e.currentTarget.style.boxShadow = '0 0 12px rgba(0, 245, 255, 0.15)';
+              e.currentTarget.style.transform = 'translateY(-1px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(0, 245, 255, 0.04)';
+              e.currentTarget.style.borderColor = 'rgba(0, 245, 255, 0.15)';
+              e.currentTarget.style.boxShadow = 'none';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
+          >
+            {sug}
+          </button>
+        ))}
       </div>
 
       {/* Message Input */}
