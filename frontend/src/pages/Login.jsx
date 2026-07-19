@@ -19,7 +19,7 @@ function Login() {
       localStorage.setItem('token', res.data.token);
       navigate('/home');
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
+      setError(err.response?.data?.error || err.response?.data?.message || 'Login failed. Please check your credentials.');
     } finally {
       setLoading(false);
     }

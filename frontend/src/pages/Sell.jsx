@@ -65,7 +65,7 @@ function Sell() {
       setSuccess('Product listed successfully! Redirecting...');
       setTimeout(() => navigate('/home'), 1500);
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to list product.');
+      setError(err.response?.data?.error || err.response?.data?.message || 'Failed to list product.');
     } finally {
       setLoading(false);
     }

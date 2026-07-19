@@ -64,7 +64,7 @@ function Home() {
       await API.delete(`/product/${id}`);
       setProducts(prev => prev.filter(p => p._id !== id));
     } catch (err) {
-      alert(err.response?.data?.message || 'Failed to delete listing.');
+      alert(err.response?.data?.error || err.response?.data?.message || 'Failed to delete listing.');
     }
   };
 
@@ -74,7 +74,7 @@ function Home() {
       const res = await API.patch(`/product/${id}/status`, { status: nextStatus });
       setProducts(prev => prev.map(p => p._id === id ? { ...p, status: res.data.status } : p));
     } catch (err) {
-      alert(err.response?.data?.message || 'Failed to update status.');
+      alert(err.response?.data?.error || err.response?.data?.message || 'Failed to update status.');
     }
   };
 

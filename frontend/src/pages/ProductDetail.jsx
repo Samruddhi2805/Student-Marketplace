@@ -54,7 +54,7 @@ function ProductDetail() {
       alert('Listing deleted successfully!');
       navigate('/home');
     } catch (err) {
-      alert(err.response?.data?.message || 'Failed to delete listing.');
+      alert(err.response?.data?.error || err.response?.data?.message || 'Failed to delete listing.');
     }
   };
 
@@ -64,7 +64,7 @@ function ProductDetail() {
       const res = await API.patch(`/product/${id}/status`, { status: nextStatus });
       setProduct(prev => ({ ...prev, status: res.data.status }));
     } catch (err) {
-      alert(err.response?.data?.message || 'Failed to update status.');
+      alert(err.response?.data?.error || err.response?.data?.message || 'Failed to update status.');
     }
   };
 
