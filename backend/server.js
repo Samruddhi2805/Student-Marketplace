@@ -71,7 +71,8 @@ app.post('/register', async (req, res) => {
 
     res.status(201).json({ message: 'User registered successfully' });
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error('Register error:', err);
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 
@@ -99,7 +100,8 @@ app.post('/login', async (req, res) => {
 
     res.json({ token, user: payload });
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error('Login error:', err);
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 
@@ -137,8 +139,8 @@ app.post('/product', auth, upload.array('images', 5), async (req, res) => {
     const savedProduct = await newProduct.save();
     res.status(201).json(savedProduct);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
+    console.error('Create product error:', err);
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 
@@ -148,7 +150,8 @@ app.get('/products', async (req, res) => {
     const products = await Product.find().sort({ createdAt: -1 });
     res.json(products);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error('Get products error:', err);
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 
@@ -161,7 +164,8 @@ app.get('/product/:id', async (req, res) => {
     }
     res.json(product);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error('Get product by ID error:', err);
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 
@@ -171,7 +175,8 @@ app.get('/my-products', auth, async (req, res) => {
     const products = await Product.find({ seller: req.user.email }).sort({ createdAt: -1 });
     res.json(products);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error('Get my products error:', err);
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 
@@ -188,7 +193,8 @@ app.delete('/product/:id', auth, async (req, res) => {
     await Product.findByIdAndDelete(req.params.id);
     res.json({ message: 'Product deleted successfully' });
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error('Delete product error:', err);
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 
@@ -210,7 +216,8 @@ app.patch('/product/:id/status', auth, async (req, res) => {
     const updated = await product.save();
     res.json(updated);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error('Update product status error:', err);
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 
@@ -233,7 +240,8 @@ app.post('/message', auth, async (req, res) => {
     const saved = await newMessage.save();
     res.status(201).json(saved);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error('Send message error:', err);
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 
@@ -243,7 +251,8 @@ app.get('/unread-count', auth, async (req, res) => {
     const count = await Message.countDocuments({ receiver: req.user.email, read: false });
     res.json({ count });
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error('Get unread count error:', err);
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 
@@ -268,7 +277,8 @@ app.get('/messages/:otherEmail', auth, async (req, res) => {
 
     res.json(messages);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error('Get messages error:', err);
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 
@@ -298,7 +308,8 @@ app.get('/conversations', auth, async (req, res) => {
 
     res.json(Object.values(conversationMap));
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error('Get conversations error:', err);
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 
